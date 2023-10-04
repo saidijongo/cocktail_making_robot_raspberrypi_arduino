@@ -58,6 +58,7 @@ def start_pump(motor_pin, volume):
 
     try:
         GPIO.output(motor_pin, GPIO.LOW)  # Turn on the motor
+        #send_command_to_arduino("PUMPNUMBER")
         start_time = time.time()  # Record the start time
 
         # Check if the pump operation is still running
@@ -84,7 +85,7 @@ def start_all_motors(volume):
     pump_running = True  # Start the pump operation
 
     # Sending the corresponding cocktail command to Arduino for LED strip control
-    send_command_to_arduino("START")
+    #send_command_to_arduino("ALLMOTORS")
 
     threads = []
 
@@ -193,6 +194,7 @@ def make_cocktail(cocktail):
 def stop_pumps():
     global pump_running
     GPIO.output(relay_pins, GPIO.HIGH)  # Turn off the motor
+    #send_command_to_arduino("WAITING")
     pump_running = False
 
 # Create the main tkinter window
